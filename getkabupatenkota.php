@@ -5,10 +5,10 @@ include 'koneksi.php';
 //tambahkan variabel provinsi. variabel provinsi akan mendapat data dari parameter provinsi yang dimasukkan di browser.
 $provinsi =  $_GET['provinsi'];
 
-//query semua data dari regencies(kabupaten/kota)
-$sql = "SELECT * FROM regencies";
+//query data kabupatenkota berdasarkan id_provinsi
+$sql = "SELECT * FROM regencies WHERE province_id = ?";
 $stmt = $dbCon->prepare($sql);
-$stmt->execute();
+$stmt->execute(array($provinsi));
 
 //lalu tampilkan data menggunakan perintah fetchAll
 print_r($stmt->fetchAll());

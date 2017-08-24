@@ -40,8 +40,17 @@ $data_provinsi = $stmt->fetchAll();
 				//function ini akan aktif ketika dropdown dengan id provinsi berubah
 				$('#provinsi').change(function() {
 
-					//perintah ini akan menampilkan alert berisi val dari dropdown provinsi. dalam hal ini, karena val dari dropdown adalah id provinsi, maka alert akan menampilkan id provinsi
-					alert($('#provinsi').val());
+					//get data kabupatenkota dari server. data yang disimpan dari server akan disimpan dalam variabel data_kabupatenkota
+					$.get( "http://localhost/kabupatenkota/getkabupatenkota.php", {provinsi:$('#provinsi').val()}, function(data_kabupatenkota) {
+						
+						//kosongkan dropdown kabupaten kota dari data sebelumnya
+						$('#kabupatenkota').empty(); 
+
+						//isikan data baru. masukkan name kota sebagai text, dan id kabupaten/kota sebagai value
+						$.each(data_kabupatenkota, function (index, value) {
+							$('#kabupatenkota').append('<option value="'+value.id +'">'+value.name +'</option>');
+						});
+					});
 				});
 			});
 		</script>

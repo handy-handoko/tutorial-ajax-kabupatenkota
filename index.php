@@ -1,3 +1,14 @@
+<?php
+include 'koneksi.php';
+
+//buat perintah sql untuk query data provinsi
+$sql = "SELECT id, name FROM provinces";
+$stmt = $dbCon->prepare($sql);
+$stmt->execute();
+
+//simpan data hasil query ke dalam variable data_provinsi
+$data_provinsi = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html>
 	<head>

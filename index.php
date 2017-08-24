@@ -17,9 +17,14 @@ $data_provinsi = $stmt->fetchAll();
 	</head>
 	<body>
 		Provinsi
-		<select id="provinsi">
-			<option>Silahkan pilih provinsi</option>
-		</select>
+			<select id="provinsi">
+
+				<?php //isi data dari variabel provinsi ke dalam dropdown.
+				foreach($data_provinsi as $provinsi) {?>
+					<option value="<?php echo $provinsi['id']; ?>"><?php echo $provinsi['name']; ?></option>
+				<?php } ?>
+			
+			</select>
 		<br/>
 		Kabupaten/Kota
 		<select id="kabupatenkota">

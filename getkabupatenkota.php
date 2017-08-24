@@ -11,5 +11,6 @@ $stmt = $dbCon->prepare($sql);
 //tambahkan parameter $provinsi ke dalam statement. 
 $stmt->execute(array($provinsi));
 
-//lalu tampilkan data menggunakan perintah fetchAll
-print_r($stmt->fetchAll());
+//ubah perintah print_r menjadi echo json_encode(); jangan lupa mengubah header menjadi json.
+header('Content-Type: application/json');
+echo json_encode($stmt->fetchAll());
